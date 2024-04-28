@@ -11,7 +11,7 @@ class Hetzner::Server
   getter private_net : Array(Hetzner::NetworkInterface)?
 
   def public_ip_address
-    public_net.try(&.ipv4).try(&.ip)
+    public_net.try(&.ipv4).try(&.ip) || public_net.try(&.ipv6).try(&.host_ip?)
   end
 
   def private_ip_address
